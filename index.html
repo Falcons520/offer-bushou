@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Offer 捕手：基于 Claude API 的简历解析、岗位匹配与简历优化工具。">
+  <meta name="theme-color" content="#17231f">
+  <title>Offer 捕手 | AI 求职匹配引擎</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="应用导航">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <i data-lucide="target"></i>
+        </span>
+        <div>
+          <strong>Offer 捕手</strong>
+          <span>AI 求职匹配引擎</span>
+        </div>
+      </div>
+
+      <section class="sidebar-section api-section" aria-labelledby="api-title">
+        <div class="sidebar-heading">
+          <h2 id="api-title">Claude API</h2>
+          <span class="status-pill" id="apiStatus">未连接</span>
+        </div>
+        <label class="field-label" for="apiKey">API Key</label>
+        <div class="secret-input">
+          <input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="sk-ant-...">
+          <button class="icon-button" id="toggleApiKey" type="button" title="显示 API Key" aria-label="显示 API Key">
+            <i data-lucide="eye"></i>
+          </button>
+        </div>
+        <p class="field-hint">仅保存在当前标签页，关闭后自动清除。</p>
+        <button class="text-button" id="clearApiKey" type="button">
+          <i data-lucide="key-round"></i>
+          清除密钥
+        </button>
+      </section>
+
+      <section class="sidebar-section" aria-labelledby="workflow-title">
+        <div class="sidebar-heading">
+          <h2 id="workflow-title">申请流程</h2>
+        </div>
+        <nav class="workflow-nav" id="workflowNav"></nav>
+      </section>
+
+      <div class="sidebar-foot">
+        <div class="secure-note">
+          <i data-lucide="shield-check"></i>
+          <span>简历文件只在浏览器内解析</span>
+        </div>
+        <span>Powered by Claude API</span>
+      </div>
+    </aside>
+
+    <button class="sidebar-backdrop" id="sidebarBackdrop" type="button" aria-label="关闭导航"></button>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu" id="mobileMenu" type="button" title="打开导航" aria-label="打开导航">
+            <i data-lucide="menu"></i>
+          </button>
+          <div class="page-context">
+            <span class="eyebrow">求职工作台</span>
+            <h1 id="pageTitle">上传简历</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <span class="connection-status" id="connectionStatus">
+            <span class="status-dot"></span>
+            <span>等待 API Key</span>
+          </span>
+          <button class="button button-ghost button-small" id="resetApp" type="button">
+            <i data-lucide="rotate-ccw"></i>
+            重新开始
+          </button>
+        </div>
+      </header>
+
+      <div class="main-content" id="app" aria-live="polite">
+        <div class="boot-state">
+          <span class="spinner"></span>
+          <span>正在载入工作台</span>
+        </div>
+      </div>
+
+      <footer class="app-footer">
+        <span>Offer 捕手</span>
+        <span>AI 输出仅供参考，请结合实际情况判断。</span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="assertive"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js" defer></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>
